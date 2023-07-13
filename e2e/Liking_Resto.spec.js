@@ -32,3 +32,28 @@ Scenario('liking one resto', async ({ I }) => {
   const likedRestoTitle = await I.grabTextFrom('.post-item__title a');
   assert.strictEqual(firstRestoTitle, likedRestoTitle);
 });
+
+Scenario('Unliking Resto', ({ I }) => {
+  I.see('', '.posts');
+  I.amOnPage('/');
+
+  I.waitForElement('.post-item', 3);
+  I.seeElement('.post-item__title a');
+
+  I.click(locate('.post-item__title a').first());
+
+  I.waitForElement('#likeButton', 5);
+  const like = locate('[aria-label="like this restaurant"]');
+  const unlike = locate('[aria-label="unlike this restaurant"]');
+
+  I.seeElement(like);
+  I.click(like);
+
+  I.seeElement(unlike);
+  I.click(unlike);
+
+  I.seeElement(like);
+
+  I.amOnPage('/#/like');
+  I.see('', '.posts');
+});
