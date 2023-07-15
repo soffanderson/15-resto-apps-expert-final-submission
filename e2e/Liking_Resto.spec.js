@@ -57,3 +57,17 @@ Scenario('Unliking Resto', ({ I }) => {
   I.amOnPage('/#/like');
   I.see('', '.posts');
 });
+
+Scenario('Do not see undefined element', ({ I }) => {
+  I.amOnPage('/');
+
+  I.waitForElement('.post-item', 3);
+  I.seeElement('.post-item__title a');
+
+  I.click(locate('.post-item__title a').first());
+
+  I.dontSee('undefind', '.movie__title');
+  I.dontSee('undefind', '.movie__poster');
+  I.dontSee('undefind', '.movie__info');
+  I.dontSee('undefind', '.movie__overview');
+});
