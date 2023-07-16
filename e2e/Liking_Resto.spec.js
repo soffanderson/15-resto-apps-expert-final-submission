@@ -48,6 +48,7 @@ Scenario('Unliking Resto', ({ I }) => {
 
   I.seeElement(like);
   I.click(like);
+  I.wait(10);
 
   I.seeElement(unlike);
   I.click(unlike);
